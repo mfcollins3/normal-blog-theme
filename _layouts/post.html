@@ -32,7 +32,7 @@ layout: default
           {% endif %}
           <h1>{{ page.title }}</h1>
           <p class="post-info">
-            {{ page.author.name | default: page.author | default: site.author.name | default: site.author }}<br>
+            <span class="author">{{ page.author.name | default: page.author | default: site.author.name | default: site.author }}</span><br>
             <time datetime="{{ page.date | date:'%Y-%m-%d' }}">{{ page.date | date:'%B %d, %Y' }}</time>
           </p>
           {% if page.excerpt %}
