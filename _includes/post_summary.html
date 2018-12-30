@@ -1,5 +1,5 @@
 <article class="post-summary">
-  {% assign cover_photo_url = post.cover_photo.url | defaukt: post.cover_photo | default: nil %}
+  {% assign cover_photo_url = post.cover_photo.url | default: post.cover_photo | default: nil %}
   {% if cover_photo_url %}
     <div class="cover-photo">
       <a href="{{ post.url }}"><img src="{{ cover_photo_url }}"></a>
