@@ -1,1 +1,36 @@
-<p>{{ site.categories[page.featured_category] }}</p>
+<div id="featured-category">
+  <header>
+    <h1>Featured Category</h1>
+    <h2>{{ page.featured_category.title }}</h2>
+  </header>
+  {% assign featured_category = site.categories[page.featured_category.category] %}
+  {% assign first_post = featured_category | first %}
+  <article class="featured-article">
+    <h1><a href="{{ first_post.url }}">{{ first_post.title }}</a></h1>
+    <div>
+        {{ post.author.name | default: post.author | default: site.author.name | default: site.author }}<br>
+        <time datetime="{{ latest_post.date | date:'%Y-%m-%d' }}">{{ latest_post.date | date:'%B %d, %Y' }}</time>
+    </div>
+    <p>
+      <span class="excerpt">
+        {{ latest_post.excerpt | remove: '<p>' | remove: '</p>' }}
+      </span>
+      <a href="{{ latest_post.url }}">Read more</a>
+    </p>
+  </article>
+  {% for post in featured_category offset:1 limit:4 %}
+    <article>
+      <h1><a href="{{ post.url }}">{{ post.title }}</a></h1>
+      <div>
+        <time datetime="{{ latest_post.date | date:'%Y-%m-%d' }}">{{ latest_post.date | date:'%B %d, %Y' }}</time>
+      </div>
+      <p>
+        <span class="excerpt">
+          {{ post.excerpt | remove: '<p>' | remove: '</p>' }}
+        </span>
+        <a href="{{ post.url }}">Read more</a>
+      </p>
+    </article>
+  {% endfor %}
+</div>
+  
