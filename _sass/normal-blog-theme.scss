@@ -47,6 +47,12 @@ main {
   margin: 0 10px;
 }
 
+body > footer {
+  margin-top: $grid-gutter-width;
+  padding-top: $grid-gutter-width;
+  border-top: 1px solid $gray-300;
+}
+
 #latest-story, #featured-category {
   margin: $grid-gutter-width 0;
 
@@ -215,5 +221,26 @@ main {
         }
       }
     }
+  }
+}
+
+#recent-posts {
+  margin: $grid-gutter-width 0;
+
+  > header > h1 {
+    font-size: $font-size-base * 1.5;
+    border-bottom: 1px solid $gray-300;
+  }
+
+  .summary > h1 {
+    font-size: $font-size-base * 1.5;
+  }
+}
+
+@include media-breakpoint-up(md) {
+  #recent-posts > div {
+    display: grid;
+    grid-gap: $grid-gutter-width;
+    grid-template-columns: repeat(2, 1fr);
   }
 }
