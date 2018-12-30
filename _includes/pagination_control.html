@@ -1,17 +1,50 @@
 <nav aria-label="Blog Index Navigation">
-  <ul class="pagination">
-    <li class="page-item">
-      <a class="page-link" href="{{ paginator.previous_page_path }}" aria-label="Previous">
-        <span aria-hidden="true">&laquo;</span>
-      </a>
-    </li>
-    <li class="page-item"><a class="page-link" href="#">1</a></li>
-    <li class="page-item"><a class="page-link" href="#">2</a></li>
-    <li class="page-item"><a class="page-link" href="#">3</a></li>
-    <li class="page-item">
-      <a class="page-link" href="#" aria-label="Next">
-        <span aria-hidden="true">&raquo;</span>
-      </a>
-    </li>
-  </ul>
-</nav>
+    <ul class="pagination justify-content-center">
+      {% if paginator.previous_page %}
+        {% assign previous_class = "" %}
+        {% assign previous_disabled = "false" %}
+      {% else %}
+        {% assign previous_class = "disabled" %}
+        {% assign previous_disabled = "true" %}
+      {% endif %}
+      <li class="page-item {{ previous_class }}">
+        <a class="page-link" href="{{ paginator.previous_page_path }}" aria-label="Previous" aria-disabled="{{ previous_disabled }}">
+          <span aria-hidden="true">&laquo;</span>
+        </a>
+      </li>
+      {% for current_page in (1..paginator.total_pages) %}
+        {% if current_page == paginator.page %}
+          {% assign page_class = "active" %}
+        {% else %}
+          {% assign page_class = "" %}
+        {% endif %}
+        {% if current_page == 1 %}
+          {% assign page_path = "/blog/" %}
+        {% else %}
+          {% capture page_path %}/blog/page{{current_page}}/{% endcapture %}
+        {% endif %}
+        <li class="page-item {{ page_class }}">
+          {% if current_page == paginator.page %}
+            <span class="page-link">
+              {{ current_page }}
+              <span class="sr-only">(current)</span>
+            </span>
+          {% else %}
+            <a class="page-link" href="{{page_path}}">{{current_page}}</a>
+          {% endif %}
+        </li>
+      {% endfor %}
+      {% if paginator.next_page %}
+        {% assign next_class = "" %}
+        {% assign next_disabled = "false" %}
+      {% else %}
+        {% assign next_class = "disabled" %}
+        {% assign next_disabled = "true" %}
+      {% endif %}
+      <li class="page-item {{ next_class }}">
+        <a class="page-link" href="{{ paginator.next_page_path }}" aria-disabled="{{ next_disabled }}" aria-label="Next">
+          <span aria-hidden="true">&raquo;</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
