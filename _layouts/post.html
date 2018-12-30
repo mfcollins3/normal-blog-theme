@@ -23,11 +23,12 @@ layout: default
         <header>
           {% assign cover_photo_url = page.cover_photo.url | default: page.cover_photo | default: nil %}
           {% if cover_photo_url %}
-            <div class="cover-photo" style="background-image: url('{{ cover_photo_url }}');">
+            <div class="cover-photo">
+              <div style="background-image: url('{{ cover_photo_url }}');"></div>
+              {% if page.cover_photo.attribution %}
+                <caption>{{ page.cover_photo.attribution }}</caption>
+              {% endif %}
             </div>
-            {% if page.cover_photo.attribution %}
-              <caption>{{ page.cover_photo.attribution }}</caption>
-            {% endif %}
           {% endif %}
           <h1>{{ page.title }}</h1>
           <p class="post-info">
