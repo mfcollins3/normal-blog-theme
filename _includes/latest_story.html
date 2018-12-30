@@ -6,7 +6,7 @@
     {% assign latest_post = site.posts | first %}
     <header>
       {% if latest_post.cover_photo %}
-        <img class="cover-photo" src="{{ latest_post.cover_photo }} ">
+        <a href="{{ latest_post.url }}"><img class="cover-photo" src="{{ latest_post.cover_photo }} "></a>
       {% endif %}
       <div>
         <h1><a href="{{ latest_post.url }}">{{latest_post.title}}</a></h1>
