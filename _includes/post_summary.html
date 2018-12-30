@@ -1,0 +1,16 @@
+<article>
+  {% if post.cover_photo %}
+    <img src="{{ post.cover_photo }}">
+  {% endif %}
+  <h1><a href="{{ post.url }}">{{ post.title }}</a></h1>
+  <div>
+      <time datetime="{{ post.date | date:'%Y-%m-%d' }}">{{ post.date | date:'%B %d, %Y' }}</time>
+  </div>
+  <p>
+    <span class="excerpt">
+      {{ post.excerpt | remove: '<p>' | remove: '</p>' }}
+    </span>
+    <a href="{{ post.url }}">Read article</a>
+  </p>
+</article>
+  
