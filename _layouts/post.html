@@ -7,7 +7,7 @@ layout: default
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, shrink-to-fit=no">
-    <title>{{ post.title }} - {{ site.title }}</title>
+    <title>{{ page.title }} - {{ site.title }}</title>
     {% include font_awesome.html %}
     <link rel="stylesheet" href="/assets/css/styles.css" media="screen">
     {% include rss_feed_meta.html %}
@@ -21,10 +21,10 @@ layout: default
     <main>
       <article class="post">
         <header>
-          <h1>{{ post.title }}</h1>
+          <h1>{{ page.title }}</h1>
           <p class="post-info">
             {{ page.author.name | default: page.author | default: site.author.name | default: site.author }}<br>
-            <time datetime="{{ post.date | date:'%Y-%m-%d' }}">{{ post.date | date:'%B %d, %Y' }}</time>
+            <time datetime="{{ page.date | date:'%Y-%m-%d' }}">{{ page.date | date:'%B %d, %Y' }}</time>
           </p>
           {% if page.excerpt %}
             <p class="excerpt">
