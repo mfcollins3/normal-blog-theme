@@ -4,9 +4,10 @@
   </header>
   <article class="post-summary">
     {% assign latest_post = site.posts | first %}
-    {% if latest_post.cover_photo %}
+    {% assign cover_photo_url = latest_post.cover_photo.url | default: latest_post.cover_photo | default: nil%}
+    {% if cover_photo_url %}
       <div class="cover-photo">
-          <a href="{{ latest_post.url }}"><img src="{{ latest_post.cover_photo }} "></a>
+          <a href="{{ latest_post.url }}"><img src="{{ cover_photo_url }} "></a>
       </div>
     {% endif %}
     <div class="summary">

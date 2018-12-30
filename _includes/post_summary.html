@@ -1,7 +1,8 @@
 <article class="post-summary">
-  {% if post.cover_photo %}
+  {% assign cover_photo_url = post.cover_photo.url | defaukt: post.cover_photo | default: nil %}
+  {% if cover_photo_url %}
     <div class="cover-photo">
-      <a href="{{ post.url }}"><img src="{{ post.cover_photo }}"></a>
+      <a href="{{ post.url }}"><img src="{{ cover_photo_url }}"></a>
     </div>
   {% endif %}
   <div class="summary">
