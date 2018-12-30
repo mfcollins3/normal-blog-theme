@@ -244,3 +244,7 @@ body > footer {
     grid-template-columns: repeat(2, 1fr);
   }
 }
+
+.post-list .post-summary {
+  margin: $grid-gutter-width 0;
+}
