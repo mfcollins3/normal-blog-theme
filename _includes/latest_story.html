@@ -4,16 +4,16 @@
   </header>
   <article>
     {% assign latest_post = site.posts | first %}
-    <header>
+    <div class="cover-photo">
       {% if latest_post.cover_photo %}
-        <a href="{{ latest_post.url }}"><img class="cover-photo" src="{{ latest_post.cover_photo }} "></a>
+        <a href="{{ latest_post.url }}"><img src="{{ latest_post.cover_photo }} "></a>
       {% endif %}
-      <div>
-        <h1><a href="{{ latest_post.url }}">{{latest_post.title}}</a></h1>
-        <time datetime="{{ latest_post.date | date:'%Y-%m-%d' }}">{{ latest_post.date | date:'%B %d, %Y' }}</time>
-      </div>
-    </header>
-    <p>{{ latest_post.excerpt | remove: '<p>' | remove: '</p>' }} <a href="{{ latest_post.url }}">Read more</a></p>
+    </div>
+    <div class="post-summary">
+      <h1><a href="{{ latest_post.url }}">{{latest_post.title}}</a></h1>
+      <p><time datetime="{{ latest_post.date | date:'%Y-%m-%d' }}">{{ latest_post.date | date:'%B %d, %Y' }}</time></p>
+      <p>{{ latest_post.excerpt | remove: '<p>' | remove: '</p>' }} <a href="{{ latest_post.url }}">Read more</a></p>
+    </div>
   </article>
 </div>
   
