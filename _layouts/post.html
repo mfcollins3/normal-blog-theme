@@ -19,38 +19,40 @@ layout: default
       {% include navigation_bar.html %}
     </header>
     <main>
-      <article class="post">
-        <header>
-          {% assign cover_photo_url = page.cover_photo.url | default: page.cover_photo | default: nil %}
-          {% if cover_photo_url %}
-            <div class="cover-photo">
-              <div style="background-image: url('{{ cover_photo_url }}');"></div>
-              {% if page.cover_photo.attribution %}
-                <caption>{{ page.cover_photo.attribution }}</caption>
-              {% endif %}
-            </div>
-          {% endif %}
-          <h1>{{ page.title }}</h1>
-          <p class="post-info">
-            <span class="author">{{ page.author.name | default: page.author | default: site.author.name | default: site.author }}</span><br>
-            <time datetime="{{ page.date | date:'%Y-%m-%d' }}">{{ page.date | date:'%B %d, %Y' }}</time>
-          </p>
-        </header>
-        <div class="content">
-          {{content}}
-        </div>
-        <footer>
-          {% include disqus_comments.html %}
-        </footer>
-      </article>
-      <aside class="related-posts">
-        <header>
-          <h1>Other Articles</h1>
-        </header>
-        {% for related_post in site.related_posts %}
-          {% include post_summary.html post=related_post %}
-        {% endfor %}
-      </aside>
+      <div class="post-container">
+        <article class="post">
+          <header>
+            {% assign cover_photo_url = page.cover_photo.url | default: page.cover_photo | default: nil %}
+            {% if cover_photo_url %}
+              <div class="cover-photo">
+                <div style="background-image: url('{{ cover_photo_url }}');"></div>
+                {% if page.cover_photo.attribution %}
+                  <caption>{{ page.cover_photo.attribution }}</caption>
+                {% endif %}
+              </div>
+            {% endif %}
+            <h1>{{ page.title }}</h1>
+            <p class="post-info">
+              <span class="author">{{ page.author.name | default: page.author | default: site.author.name | default: site.author }}</span><br>
+              <time datetime="{{ page.date | date:'%Y-%m-%d' }}">{{ page.date | date:'%B %d, %Y' }}</time>
+            </p>
+          </header>
+          <div class="content">
+            {{content}}
+          </div>
+        </article>
+        <aside class="related-posts">
+          <header>
+            <h1>Other Articles</h1>
+          </header>
+          {% for related_post in site.related_posts %}
+            {% include post_summary.html post=related_post %}
+          {% endfor %}
+        </aside>
+      </div>
+      <footer>
+        {% include disqus_comments.html %}
+      </footer>
     </main>
     <footer>
       {% include footer.html %}
