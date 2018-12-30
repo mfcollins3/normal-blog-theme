@@ -1,0 +1,10 @@
+<div id="recent-posts">
+  <header>
+    <h1>Recent Posts</h1>
+  </header>
+  <div>
+    {% for post in site.posts offset:1 limit:10 %}
+      {% include post_summary.html post=post %}
+    {% endfor %}
+  </div>
+</div>
