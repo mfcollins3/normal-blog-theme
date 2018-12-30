@@ -2,4 +2,45 @@
 layout: default
 ---
 
-{{ content }}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, shrink-to-fit=no">
+    <title>{{ post.title }} - {{ site.title }}</title>
+    {% include font_awesome.html %}
+    <link rel="stylesheet" href="/assets/css/styles.css" media="screen">
+    {% include rss_feed_meta.html %}
+    {% feed_meta %}
+    {% include google_analytics.html %}
+  </head>
+  <body>
+    <header>
+      {% include navigation_bar.html %}
+    </header>
+    <main>
+      <article class="post">
+        <header>
+          <h1>{{ post.title }}</h1>
+          <p class="post-info">
+            {{ page.author.name | default: page.author | default: site.author.name | default: site.author }}<br>
+            <time datetime="{{ post.date | date:'%Y-%m-%d' }}">{{ post.date | date:'%B %d, %Y' }}</time>
+          </p>
+          {% if page.excerpt %}
+            <p class="excerpt">
+              {{ page.excerpt | remove: '<p>' | remove: '</p>' }}
+            </p>
+          {% endif %}
+        </header>
+        {{content}}
+        <footer>
+          {% include disqus_comments %}
+        </footer>
+      </article>
+    </main>
+    <footer>
+      {% include footer.html %}
+    </footer>
+    {% include bootstrap_javascript.html %}
+  </body>
+</html>
