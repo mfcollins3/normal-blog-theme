@@ -45,7 +45,13 @@ layout: default
               <h1>Other Articles</h1>
             </header>
             {% for related_post in site.related_posts %}
-              {% include post_summary.html post=related_post %}
+              <article class="related-post">
+                <h1><a href="{{ related_post.url }}">{{ related_post.title }}</a></h1>
+                <p>
+                  <span class="excerpt">{{ related_post.excerpt | remove: '<p>' | remove: '</p>' }}</span>
+                  <a href="{{ related_post.url }}">Read</a>
+                </p>
+              </article>
             {% endfor %}
           </aside>
         </div>
