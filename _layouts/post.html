@@ -35,17 +35,22 @@ layout: default
             <span class="author">{{ page.author.name | default: page.author | default: site.author.name | default: site.author }}</span><br>
             <time datetime="{{ page.date | date:'%Y-%m-%d' }}">{{ page.date | date:'%B %d, %Y' }}</time>
           </p>
-          {% if page.excerpt %}
-            <p class="excerpt">
-              {{ page.excerpt | remove: '<p>' | remove: '</p>' }}
-            </p>
-          {% endif %}
         </header>
-        {{content}}
+        <div class="content">
+          {{content}}
+        </div>
         <footer>
           {% include disqus_comments.html %}
         </footer>
       </article>
+      <aside class="related-posts">
+        <header>
+          <h1>Other Articles</h1>
+        </header>
+        {% for related_post in site.related_posts %}
+          {% include post_summary.html post=related_post %}
+        {% endfor %}
+      </aside>
     </main>
     <footer>
       {% include footer.html %}
