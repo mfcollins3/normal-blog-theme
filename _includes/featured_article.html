@@ -1,0 +1,21 @@
+{% assign featured_post = site.tags.featured | first %}
+{% if featured_post %}
+  <div id="featured-story">
+    <header>
+      <h1>Featured Article</h1>
+    </header>
+    <article class="post-summary">
+      {% assign cover_photo_url = featured_post.cover_photo.url | default: featured_post.cover_photo | default: nil%}
+      {% if cover_photo_url %}
+        <div class="cover-photo">
+            <a href="{{ featured_post.url }}"><img src="{{ cover_photo_url }} "></a>
+        </div>
+      {% endif %}
+      <div class="summary">
+        <h1><a href="{{ featured_post.url }}">{{featured_post.title}}</a></h1>
+        <p><time datetime="{{ featured_post.date | date:'%Y-%m-%d' }}">{{ featured_post.date | date:'%B %d, %Y' }}</time></p>
+        <p>{{ featured_post.excerpt | remove: '<p>' | remove: '</p>' }} <a href="{{ featured_post.url }}">Read article</a></p>
+      </div>
+    </article>
+  </div> 
+{% endif %}
