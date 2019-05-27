@@ -1,29 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, shrink-to-fit=no">
-    <title>{{site.title}}</title>
-    {% include font_awesome.html %}
-    <link rel="stylesheet" href="/assets/css/styles.css" media="screen">
-    {% include rss_feed_meta.html %}
-    {% feed_meta %}
-    {% include google_analytics.html %}
-  </head>
-  <body>
-    <header>
-      {% include navigation_bar.html %}
-    </header>
-    <main>
-      {{content}}
-      {% include featured_article.html %}
-      {% include latest_story.html %}
-      {% include featured_category.html %}
-      {% include recent_posts.html %}
-    </main>
-    <footer>
-      {% include footer.html %}
-    </footer>
-    {% include bootstrap_javascript.html %}
-  </body>
-</html>
+---
+layout: default
+---
+{{content}}
+{% include featured_article.html %}
+{% include latest_story.html %}
+{% include featured_category.html %}
+{% include recent_posts.html %}
