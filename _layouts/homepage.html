@@ -2,7 +2,9 @@
 layout: default
 ---
 {{content}}
-{% include featured_article.html %}
-{% include latest_story.html %}
-{% include featured_category.html %}
-{% include recent_posts.html %}
+<div class="container">
+  {% include featured_article.html %}
+  {% include latest_story.html %}
+  {% include featured_category.html %}
+  {% include recent_posts.html %}
+</div>
