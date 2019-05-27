@@ -1,43 +1,45 @@
 ---
 layout: default
 ---
-<article class="post">
-  <header>
-    {% assign cover_photo_url = page.cover_photo.url | default: page.cover_photo | default: nil %}
-    {% if cover_photo_url %}
-      <div class="cover-photo">
-        <div style="background-image: url('{{ cover_photo_url }}');"></div>
-        {% if page.cover_photo.attribution %}
-          <caption>{{ page.cover_photo.attribution }}</caption>
-        {% endif %}
+<div class="container">
+  <article class="post">
+    <header>
+      {% assign cover_photo_url = page.cover_photo.url | default: page.cover_photo | default: nil %}
+      {% if cover_photo_url %}
+        <div class="cover-photo">
+          <div style="background-image: url('{{ cover_photo_url }}');"></div>
+          {% if page.cover_photo.attribution %}
+            <caption>{{ page.cover_photo.attribution }}</caption>
+          {% endif %}
+        </div>
+      {% endif %}
+      <h1>{{ page.title }}</h1>
+      <p class="post-info">
+        <span class="author">{{ page.author.name | default: page.author | default: site.author.name | default: site.author }}</span><br>
+        <time datetime="{{ page.date | date:'%Y-%m-%d' }}">{{ page.date | date:'%B %d, %Y' }}</time>
+      </p>
+    </header>
+    <div class="content-container">
+      <div class="content">
+        {{content}}
       </div>
-    {% endif %}
-    <h1>{{ page.title }}</h1>
-    <p class="post-info">
-      <span class="author">{{ page.author.name | default: page.author | default: site.author.name | default: site.author }}</span><br>
-      <time datetime="{{ page.date | date:'%Y-%m-%d' }}">{{ page.date | date:'%B %d, %Y' }}</time>
-    </p>
-  </header>
-  <div class="content-container">
-    <div class="content">
-      {{content}}
+      <aside class="related-posts">
+        <header>
+          <h1>Other Articles</h1>
+        </header>
+        {% for related_post in site.related_posts %}
+          <article class="related-post">
+            <h1><a href="{{ related_post.url }}">{{ related_post.title }}</a></h1>
+            <p>
+              <span class="excerpt">{{ related_post.excerpt | remove: '<p>' | remove: '</p>' }}</span>
+              <a href="{{ related_post.url }}">Read</a>
+            </p>
+          </article>
+        {% endfor %}
+      </aside>
     </div>
-    <aside class="related-posts">
-      <header>
-        <h1>Other Articles</h1>
-      </header>
-      {% for related_post in site.related_posts %}
-        <article class="related-post">
-          <h1><a href="{{ related_post.url }}">{{ related_post.title }}</a></h1>
-          <p>
-            <span class="excerpt">{{ related_post.excerpt | remove: '<p>' | remove: '</p>' }}</span>
-            <a href="{{ related_post.url }}">Read</a>
-          </p>
-        </article>
-      {% endfor %}
-    </aside>
-  </div>
-</article>
-<footer>
-  {% include disqus_comments.html %}
-</footer>
+  </article>
+  <footer>
+    {% include disqus_comments.html %}
+  </footer>
+</div>
